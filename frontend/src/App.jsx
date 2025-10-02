@@ -8,6 +8,8 @@ import { useAuthStore } from "./store/useAuthStore.js";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar.jsx";
 import {Loader} from "lucide-react";
+import { Navigate } from "react-router-dom";
+import {Toaster} from "react-hot-toast";
 
 export default function App(){
 
@@ -35,9 +37,11 @@ export default function App(){
         <Route path="/" element={authUser ? <HomePage/> : <Navigate to="/login"/>}/>
         <Route path="/signup" element={!authUser ? <SignUpPage/> : <Navigate to="/"/>}/>
         <Route path="/login" element={!authUser ? <LoginPage/>  : <Navigate to="/"/>}/>
-        <Route path="/settings" element={authUser ? <SettingsPage/> : <Navigate to="/login"/>}/>
+        <Route path="/settings" element={<SettingsPage/>}/>
         <Route path="/profile" element={authUser ? <ProfilePage/> : <Navigate to="/login"/>}/>
       </Routes>
+
+      <Toaster/>
     </>
   )
 }
